@@ -1,6 +1,7 @@
 package main
 
 import (
+	"meteo_bot/internal/adapters/gis_meteo"
 	"meteo_bot/internal/adapters/telegram"
 	"meteo_bot/internal/config"
 )
@@ -16,7 +17,8 @@ func main() {
 		panic(err)
 	}
 
-	err = tgBot.Polling()
+	gis := gis_meteo.NewGisMeteoAPI()
+	err = tgBot.Polling(gis)
 	if err != nil {
 		panic(err)
 	}
