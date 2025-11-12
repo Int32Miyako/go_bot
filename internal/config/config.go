@@ -8,7 +8,8 @@ import (
 )
 
 type Config struct {
-	BotToken string
+	BotToken             string
+	OpenWeatherMapAPIKey string
 }
 
 // LoadConfig загружает конфигурацию из .env файла и
@@ -23,7 +24,12 @@ func LoadConfig() (*Config, error) {
 		return nil, errors.New("BOT_TOKEN environment variable not set")
 	}
 
+	openWeatherApiKey := os.Getenv("OPEN_WEATHER_API_KEY")
+	if openWeatherApiKey == "" {
+		return nil, errors.New("OPEN_WEATHER_API_KEY environment variable not set")
+	}
 	return &Config{
-		BotToken: token,
+		BotToken:             token,
+		OpenWeatherMapAPIKey: openWeatherApiKey,
 	}, nil
 }

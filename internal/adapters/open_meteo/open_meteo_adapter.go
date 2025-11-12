@@ -6,7 +6,6 @@ import "net/http"
 
 type OpenMeteoAPI struct {
 	client *http.Client
-	url    string
 }
 
 func NewOpenMeteoAPI() *OpenMeteoAPI {
